@@ -134,13 +134,13 @@ def pretreatment(file_name):
                 elif read[i] == '"' or read[i] == "'":#读到双引号和单引号处理方法一致
                     temp = read[i]
                     fp_write.write(read[i])
-                    j = i+1
                     while 1:
-                        j += 1
-                        if j >= length:
+                        i += 1
+                        fp_write.write(read[i])
+                        if i >= length:
                             print("ERROR: missing '"' or "'" ")
                             exit()
-                        if read[j] == temp and j < len(read):
+                        if read[i] == temp and i < length:
                             break
 
                 else:
