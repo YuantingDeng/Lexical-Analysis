@@ -108,7 +108,7 @@ def pretreatment(file_name):
 
                 if read[i] == '#':#读到是注释，那就读下一行
                     break
-                elif read[i] =='/' and read[i+1] =='*':
+                elif read[i] == '/' and read[i+1] == '*':
                     sign = 10
                 elif read[i] == ' ':#读到空格
                     if sign == 1:
@@ -169,17 +169,17 @@ def save_var(string):
         if len(string.strip()) < 1:
             pass
         else:
-            if is_signal(string) == 1:#标识符
+            if is_signal(string) == 1:  # 标识符
                 signdict[string] = 36
-            elif is_integer(string) == 1:#整数
+            elif is_integer(string) == 1:  # 整数
                 signdict[string] = 37
-            elif is_char(string) == 1:#字符常数
+            elif is_char(string) == 1:  # 字符常数
                 signdict[string] = 38
-            else:#错误信息
+            else:  # 错误信息
                 signdict[string] = 501
             signlist.append(signdict[string])
             keylist.append(string)
-    else:#重复出现的
+    else:  # 重复出现的
         signlist.append(signdict[string])
         keylist.append(string)
         pass
@@ -227,7 +227,7 @@ def recognition(filename):
                     sign = 0
                     pass
                 else:
-                    if sign >= 1:
+                    if sign == 1:#如果是一个"" () [] {}
                         string += read
                     else:
                         save(string)
@@ -343,7 +343,6 @@ def recognition(filename):
                 string = ""
                 continue
             else:
-
                 string += read
 
     except Exception as e:
