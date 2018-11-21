@@ -159,9 +159,13 @@ def save(string):
             else:
                 signlist.append(keywords[string])
                 keylist.append(string)
-        if string not in signdict.keys():
-            signdict[string] = keywords[string]
-            
+            if string not in signdict.keys():
+                signdict[string] = keywords[string]
+        else:  # keylist为空，即第一个循环
+            signlist.append(keywords[string])
+            keylist.append(string)
+            if string not in signdict.keys():
+                signdict[string] = keywords[string]
     else:
         save_var(string)
 def save_var(string):
@@ -356,7 +360,7 @@ def main():
     print("邓远亭 16计科一班 201530821046\n")
     print("Please Input FileName\n")
     #filename = input("FileName: ")
-    filename = "TEST2"
+    filename = "TEST3"
     pretreatment(filename)
     #recognition(filename)
     recognition('file.tmp')
