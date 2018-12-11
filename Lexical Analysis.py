@@ -353,38 +353,41 @@ def recognition(filename):
         print(e)
 
 def main():
-    #if len(sys.argv) < 2:
-        #print("Please Input FileName")
-    #else:
-        #pretreatment(sys.argv[1])
     print("邓远亭 16计科一班 201530821046\n")
     print("Please Input FileName\n")
-    #filename = input("FileName: ")
-    filename = "TEST3"
+    filename = input("FileName: ")
+    #filename = "TEST3"
     pretreatment(filename)
     #recognition(filename)
-    recognition('file.tmp')
+    recognition('file.tmp')#返回signlist和keylist
 
     for i in range(len(signlist)):
-        print("(", signlist[i], ",", keylist[i], ")")
-    """
-    for i in signlist:
-        for key, values in signdict.items():
-            if values == i:
-                print("(", values, ",", key.rstrip('\n'), ")")
-                break
-    """
-    """
-    for i in signdict.keys():
-        if signdict[i]==36:
-            sign = 1
-        elif signdict[i]==37:
-            sign = 2
-        elif signdict[i]==38:
-            sign = 3
+        if (i+1) % 5 == 0:
+            print("(", signlist[i], ",", keylist[i], ")")
         else:
-            sign = "-"
-        print("(", signdict[i], ",", i.rstrip('\n'), ")")
-    """
+            print("(", signlist[i], ",", keylist[i], ")", end=' ')
+
+    print("\n---------------------------------------------------------------")
+
+    #把上面的结果转化为实验要求的输出，利用新的数组resultlist
+    resultlist = []#resultlist测试用
+    resultdict = {}
+    j = 1
+    for i in range(len(signlist)):
+        if signlist[i] == 36 or signlist[i] == 37 or signlist[i] == 38:
+            if keylist[i] not in resultdict:
+                resultdict[keylist[i]] = j
+                j += 1
+            resultlist.append(keylist[i])
+        else:
+            resultdict[keylist[i]] = '-'
+            resultlist.append('-')
+
+
+    for i in range(len(signlist)):
+        if (i+1) % 5 == 0:
+            print("(", signlist[i], ",", resultdict[keylist[i]], ")")
+        else:
+            print("(", signlist[i], ",", resultdict[keylist[i]], ")", end=' ')
 if __name__ == '__main__':
     main()
